@@ -5,13 +5,15 @@ import Keyboard from './keyboard';
 import React, { useState, useEffect } from 'react';
 import Message from './message';
 import wordList from './words';
+import wordPopularList from './words_popular';
+import { RWebShare } from "react-web-share";
 
 const App = () => {
   const [ANSWERLETTER, setANSWERLETTER] = useState("ANSWER");
   useEffect(() => {
-    setANSWERLETTER(wordList[Math.floor(Math.random() * (wordList.length - 1))].toUpperCase());
+    setANSWERLETTER(wordPopularList[Math.floor(Math.random() * (wordPopularList.length - 1))].toUpperCase());
   }, []);
-  // console.log(ANSWERLETTER);
+  console.log(ANSWERLETTER);
   const toCountDict = arr => {
     const d = {};
     for(let key of arr){
@@ -36,6 +38,7 @@ const App = () => {
   const [rowCursor, setRowCursor] = useState(0);
   const [columnCursor, setColumnCursor] = useState(0);
   const [message, setMessage] = useState("");
+  const [pushCount, setPushCount] = useState(0);
   const [isClear, setIsClear] = useState(false);
   const initialAllKeyboardState = {
     "Q": "", "W": "", "E": "", "R": "", "T": "", "Y": "", "U": "", "I": "", "O": "", "P": "",
@@ -63,6 +66,13 @@ const App = () => {
       setColumnCursor(columnCursor - 1);
     };
   };
+  const isInWordList = () => {
+    let allLettersString = "";
+    for(let c = 0; c < 6; c++){
+      allLettersString += allletters[rowCursor].letters[c].letter;
+    };
+    return wordList.includes(allLettersString.toLowerCase());
+  };
   const checkAnswer = () => {
     let res = true;
     const colors = Array(6).fill("gray");
@@ -79,6 +89,7 @@ const App = () => {
       if(colors[c] === "gray"){
         if(_ANSWERLETTERDICT[allletters[rowCursor].letters[c].letter] > 0){
           colors[c] = "yellow";
+          _ANSWERLETTERDICT[allletters[rowCursor].letters[c].letter] -= 1;
         };
       };
     };
@@ -102,13 +113,20 @@ const App = () => {
   };
   const answer = () => {
     if(columnCursor === 6){
-      if(checkAnswer()){
-        setMessage("Clear!");
-        setIsClear(true);
-      };
-      setColumnCursor(0);
-      if(rowCursor < 5){
-        setRowCursor(rowCursor + 1);
+      setPushCount(prevState => prevState + 1);
+      if(isInWordList()){
+        if(checkAnswer()){
+          setMessage("clear");
+          setIsClear(true);
+        }else{
+          setMessage("");
+        };
+        setColumnCursor(0);
+        if(rowCursor < 5){
+          setRowCursor(rowCursor + 1);
+        };
+      }else{
+        setMessage("notinwordlist");
       };
     };
   };
@@ -127,8 +145,22 @@ const App = () => {
               deleteLetter={deleteLetter}
               keyboardState={keyboardState}
             />
-            <Message message={message}/>
+            <Message 
+              message={message}
+              pushCount={pushCount}
+            />
           </Content>
+          <button onClick={() => {console.log(message)}}>MESSAGE</button>
+          <RWebShare
+            data={{
+              text: "Like humans, flamingos make friends for life",
+              url: "https://on.natgeo.com/2zHaNup",
+              title: "Flamingos",
+            }}
+            onClick={() => console.log("shared successfully!")}
+          >
+            <button>Share 🔗</button>
+          </RWebShare>
         </ContentWrapper>
       </Body>
     </>

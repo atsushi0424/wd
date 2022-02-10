@@ -1,9 +1,23 @@
 import styled, { keyframes } from 'styled-components';
+import React, { useState, useEffect } from 'react';
 
 const Message = props => {
+  let actualMessage = "";
+  if(props.message === "clear"){
+    actualMessage = "Clear!";
+  }else{
+    actualMessage = "Not in word list";
+  };
+  const [messageClass, setMessageClass] = useState("");
+  useEffect(() => {
+    setMessageClass("");
+    setTimeout(() => {
+      setMessageClass(props.message);
+    }, 100);
+  }, [props.pushCount, props.message]);
   return(
-    <MessageContainer className={props.message ? "show" : ""}>
-        <span>{props.message}</span>
+    <MessageContainer className={messageClass}>
+      <span>{actualMessage}</span>
     </MessageContainer>
   );
 };
@@ -39,11 +53,18 @@ const MessageContainer = styled.div`
     padding: 20px 15px;
     transition: 0.5s;
   }
-  &.show {
+  &.clear {
     span{
       animation-name: ${FadeInOut};
       animation-timing-function: cubic-bezier(.1,.27,.23,1);
       animation-duration: 5s;
+    }
+  }
+  &.notinwordlist {
+    span{
+      animation-name: ${FadeInOut};
+      animation-timing-function: cubic-bezier(.1,.27,.23,1);
+      animation-duration: 3s;
     }
   }
 `
