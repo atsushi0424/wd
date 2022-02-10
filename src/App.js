@@ -4,6 +4,8 @@ import Board from './borad';
 import Keyboard from './keyboard';
 import React, { useState, useEffect } from 'react';
 import Message from './message';
+import Share from './share';
+import ShareButton from './ShareButton';
 import wordList from './words';
 import wordPopularList from './words_popular';
 import { RWebShare } from "react-web-share";
@@ -118,6 +120,7 @@ const App = () => {
         if(checkAnswer()){
           setMessage("clear");
           setIsClear(true);
+          // console.log(sharedTiles())
         }else{
           setMessage("");
         };
@@ -130,6 +133,24 @@ const App = () => {
       };
     };
   };
+  // console.log("🟨🟩⬜");
+  const sharedTiles = () => {
+    let tile = "";
+    for(let r = 0; r < 6; r++){
+      for(let c = 0; c < 6; c++){
+        if(allletters[r].letters[c].status === "white"){
+          tile += "⬜"
+        }else if (allletters[r].letters[c].status === "green"){
+          tile += "🟩";
+        }else{
+          tile += "🟨";
+        };
+      };
+      if(r < 5) tile += "\n";
+    };
+    return tile
+  };
+  // console.log(sharedTiles());
   return (
     <>
       <Header>
@@ -149,18 +170,10 @@ const App = () => {
               message={message}
               pushCount={pushCount}
             />
+            {/* <Share /> */}
           </Content>
-          <button onClick={() => {console.log(message)}}>MESSAGE</button>
-          <RWebShare
-            data={{
-              text: "Like humans, flamingos make friends for life",
-              url: "https://on.natgeo.com/2zHaNup",
-              title: "Flamingos",
-            }}
-            onClick={() => console.log("shared successfully!")}
-          >
-            <button>Share 🔗</button>
-          </RWebShare>
+          {/* <button onClick={() => {console.log(message)}}>MESSAGE</button> */}
+          <ShareButton tiles={sharedTiles}/>
         </ContentWrapper>
       </Body>
     </>
