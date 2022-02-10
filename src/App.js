@@ -173,7 +173,7 @@ const App = () => {
             {/* <Share /> */}
           </Content>
           {/* <button onClick={() => {console.log(message)}}>MESSAGE</button> */}
-          <ShareButton tiles={sharedTiles}/>
+          <ShareButton tiles={sharedTiles()}/>
         </ContentWrapper>
       </Body>
     </>
