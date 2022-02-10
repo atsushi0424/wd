@@ -5,8 +5,7 @@ const ShareButton = props => {
   return(
     <RWebShare
       data={{
-        text: "W**D**",
-        url: "W**D**\n" + props.tiles,
+        text: "W**D**\n" + props.tiles,
         title: "W**D**",
       }}
     >
