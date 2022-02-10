@@ -1,6 +1,6 @@
-import styled from 'styled-components'
+import styled from 'styled-components';
 
-const Keyboard = () => {
+const Keyboard = props => {
   const keyboardLetters = [
     ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
     ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
@@ -14,23 +14,42 @@ const Keyboard = () => {
       userSelect: "none",
     }}>
       <KeyboardRow>
-        {keyboardLetters[0].map((letter, i) => (
-          <LetterKey>{letter}</LetterKey>
+        {keyboardLetters[0].map((letter) => (
+          <LetterKey 
+            onClick={() => props.addLetter(letter)}
+            className={props.keyboardState[letter]}
+          >
+            {letter}
+          </LetterKey>
         ))}
       </KeyboardRow>
       <KeyboardRow>
         <div style={{flex : `0.5`}}/>
-        {keyboardLetters[1].map((letter, i) => (
-          <LetterKey>{letter}</LetterKey>
+        {keyboardLetters[1].map((letter) => (
+          <LetterKey 
+            onClick={() => props.addLetter(letter)}
+            className={props.keyboardState[letter]}
+          >
+            {letter}
+          </LetterKey>
         ))}
         <div style={{flex : `0.5`}}/>
       </KeyboardRow>
       <KeyboardRow>
-        <Enterkey>Enter</Enterkey>
-        {keyboardLetters[2].map((letter, i) => (
-          <LetterKey>{letter}</LetterKey>
+        <Enterkey onClick={() => props.answer()}>
+          Enter
+        </Enterkey>
+        {keyboardLetters[2].map((letter) => (
+          <LetterKey 
+            onClick={() => props.addLetter(letter)}
+            className={props.keyboardState[letter]}
+          >
+            {letter}
+          </LetterKey>
         ))}
-        <Deletekey>Del</Deletekey>
+        <Deletekey onClick={() => props.deleteLetter()}>
+          Del
+        </Deletekey>
       </KeyboardRow>
     </div>
   );
@@ -63,6 +82,18 @@ const LetterKey = styled.div`
   text-transform: uppercase;
   -webkit-tap-highlight-color: rgba(0,0,0,0.3);
   transition: .2s;
+  &.green {
+    color: #ffffff;
+    background-color: #538d4e;
+  }
+  &.gray {
+    color: #ffffff;
+    background-color: #808080;
+  }
+  &.yellow {
+    color: #ffffff;
+    background-color: #b59f3b;
+  }
 `
 
 const Enterkey = styled(LetterKey)`

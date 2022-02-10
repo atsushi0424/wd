@@ -1,152 +1,34 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components';
 
-const Board = () => {
+const Board = props => {
   return (
-    <>
-    {/* <div style={{
-      display : "grid",
-      width : "275px",
-      height : "325px",
-      margin : "0 auto",
-      gridTemplateRows : "repeat(6, 1fr)",
-      gridGap : "5px",
-      boxSizing : "border-box",
-    }}>
-      <div style={{display : "block"}}>
-        <div style={{
-          display : "grid",
-          gridTemplateColumns : "repeat(5, 1fr)",
-          gridGap : "5px",
-        }}>
-          <One>W</One>
-          <One>W</One>
-          <One>W</One>
-          <One>W</One>
-          <One>W</One>
-        </div>
-        <div style={{
-          display : "grid",
-          gridTemplateColumns : "repeat(5, 1fr)",
-          gridGap : "5px",
-        }}>
-          <One>W</One>
-          <One>W</One>
-          <One>W</One>
-          <One>W</One>
-          <One>W</One>
-        </div>
-        <div style={{
-          display : "grid",
-          gridTemplateColumns : "repeat(5, 1fr)",
-          gridGap : "5px",
-        }}>
-          <One>W</One>
-          <One>W</One>
-          <One>W</One>
-          <One>W</One>
-          <One>W</One>
-        </div>
-        <div style={{
-          display : "grid",
-          gridTemplateColumns : "repeat(5, 1fr)",
-          gridGap : "5px",
-        }}>
-          <One>W</One>
-          <One>W</One>
-          <One>W</One>
-          <One>W</One>
-          <One>W</One>
-        </div>
-        <div style={{
-          display : "grid",
-          gridTemplateColumns : "repeat(5, 1fr)",
-          gridGap : "5px",
-        }}>
-          <One>W</One>
-          <One>W</One>
-          <One>W</One>
-          <One>W</One>
-          <One>W</One>
-        </div>
-        <div style={{
-          display : "grid",
-          gridTemplateColumns : "repeat(5, 1fr)",
-          gridGap : "5px",
-        }}>
-          <One>W</One>
-          <One>W</One>
-          <One>W</One>
-          <One>W</One>
-          <One>W</One>
-        </div>
-      </div>
-    </div> */}
-
     <div style={{
       marginTop: "100px",
       width: "310px",
       height: "310px",
       margin: "0 auto"
     }}>
-      <LettersRow>
-        <LetterTile>A</LetterTile>
-        <LetterTile>B</LetterTile>
-        <LetterTile>C</LetterTile>
-        <LetterTile>D</LetterTile>
-        <LetterTile>E</LetterTile>
-        <LetterTile>F</LetterTile>
-      </LettersRow>
-      <LettersRow>
-        <LetterTile>A</LetterTile>
-        <LetterTile>B</LetterTile>
-        <LetterTile>C</LetterTile>
-        <LetterTile>D</LetterTile>
-        <LetterTile>E</LetterTile>
-        <LetterTile>F</LetterTile>
-      </LettersRow>
-      <LettersRow>
-        <LetterTile>A</LetterTile>
-        <LetterTile>B</LetterTile>
-        <LetterTile>C</LetterTile>
-        <LetterTile>D</LetterTile>
-        <LetterTile>E</LetterTile>
-        <LetterTile>F</LetterTile>
-      </LettersRow>
-      <LettersRow>
-        <LetterTile>A</LetterTile>
-        <LetterTile>B</LetterTile>
-        <LetterTile>C</LetterTile>
-        <LetterTile>D</LetterTile>
-        <LetterTile>E</LetterTile>
-        <LetterTile>F</LetterTile>
-      </LettersRow>
-      <LettersRow>
-        <LetterTile>A</LetterTile>
-        <LetterTile>B</LetterTile>
-        <LetterTile>C</LetterTile>
-        <LetterTile>D</LetterTile>
-        <LetterTile>E</LetterTile>
-        <LetterTile>F</LetterTile>
-      </LettersRow>
-      <LettersRow>
-        <LetterTile>A</LetterTile>
-        <LetterTile>B</LetterTile>
-        <LetterTile>C</LetterTile>
-        <LetterTile>D</LetterTile>
-        <LetterTile>E</LetterTile>
-        <LetterTile>F</LetterTile>
-      </LettersRow>
+      {props.allletters.map(e => (
+        <LettersRow>
+          {e.letters.map(l => (
+            <LetterTile className={`${l.status}`}>
+              {l.letter}
+            </LetterTile>
+          ))}
+        </LettersRow>
+      ))}
     </div>
-    
-    </>
   );
 }
 
-const One = styled.div`
-  display: inline-block;
-  border: 2px solid;
-  width: 100%;
-`
+const Rotate = keyframes`
+  50% {
+    transform: rotateX(90deg);
+  }
+  100% {
+    transform: rotateX(0);
+  }
+`;
 
 const LettersRow = styled.div`
   display: flex;
@@ -157,7 +39,6 @@ const LettersRow = styled.div`
 const LetterTile = styled.div`
   width: 47px;
   height: 47px;
-  border: 2px solid #808080;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -168,6 +49,29 @@ const LetterTile = styled.div`
   box-sizing: border-box;
   text-transform: uppercase;
   user-select: none;
+  &.white {
+    border: 2px solid #808080;
+    color: #000000;
+    background-color: #ffffff;
+  }
+  &.green {
+    color: #ffffff;
+    background-color: #538d4e;
+    animation-name: ${Rotate};
+    animation-timing-function: ease-in-out;
+    animation-duration: .5s;
+  }
+  &.gray {
+    color: #ffffff;
+    background-color: #808080;
+    animation-name: ${Rotate};
+    animation-timing-function: ease-in-out;
+    animation-duration: .5s;
+  }
+  &.yellow {
+    color: #ffffff;
+    background-color: #b59f3b;
+  }
 `
 
 export default Board;
