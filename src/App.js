@@ -4,11 +4,11 @@ import Board from './borad';
 import Keyboard from './keyboard';
 import React, { useState, useEffect } from 'react';
 import Message from './message';
-import Share from './share';
+// import Share from './share';
 import ShareButton from './ShareButton';
 import wordList from './words';
 import wordPopularList from './words_popular';
-import { RWebShare } from "react-web-share";
+// import { RWebShare } from "react-web-share";
 
 const App = () => {
   const [ANSWERLETTER, setANSWERLETTER] = useState("ANSWER");
