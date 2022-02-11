@@ -135,7 +135,7 @@ const App = () => {
   const sharedTiles = () => {
     let tile = "";
     let rmax = rowCursor;
-    if(rowCursor === 5 && allletters[5].letters[0].status !== "gray"){
+    if(rowCursor === 5 && allletters[5].letters[0].status !== "white"){
       rmax = 6; 
     }
     for(let r = 0; r < rmax; r++){
@@ -152,7 +152,6 @@ const App = () => {
     };
     return tile
   };
-  console.log(sharedTiles());
   return (
     <>
       <Header>
@@ -174,6 +173,7 @@ const App = () => {
             />
             {/* <Share /> */}
           </Content>
+          <button onClick={() => {console.log(sharedTiles());}}>adfajfdaj</button>
           <ShareButton 
             tiles={sharedTiles()}
             isClear={isClear}
