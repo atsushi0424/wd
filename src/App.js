@@ -12,9 +12,9 @@ import wordPopularList from './words_popular';
 
 const App = () => {
   const [ANSWERLETTER, setANSWERLETTER] = useState("ANSWER");
-  useEffect(() => {
-    setANSWERLETTER(wordPopularList[Math.floor(Math.random() * (wordPopularList.length - 1))].toUpperCase());
-  }, []);
+  // useEffect(() => {
+  //   setANSWERLETTER(wordPopularList[Math.floor(Math.random() * (wordPopularList.length - 1))].toUpperCase());
+  // }, []);
   console.log(ANSWERLETTER);
   const toCountDict = arr => {
     const d = {};
@@ -127,6 +127,8 @@ const App = () => {
         setColumnCursor(0);
         if(rowCursor < 5){
           setRowCursor(rowCursor + 1);
+        }else{
+          setIsClear(true);
         };
       }else{
         setMessage("notinwordlist");
@@ -136,21 +138,25 @@ const App = () => {
   // console.log("🟨🟩⬜");
   const sharedTiles = () => {
     let tile = "";
-    for(let r = 0; r < 6; r++){
+    let rmax = rowCursor;
+    if(rowCursor === 5 && allletters[5].letters[0].status !== "gray"){
+      rmax = 6; 
+    }
+    for(let r = 0; r < rmax; r++){
       for(let c = 0; c < 6; c++){
-        if(allletters[r].letters[c].status === "white"){
-          tile += "⬜"
-        }else if (allletters[r].letters[c].status === "green"){
+        if(allletters[r].letters[c].status === "green"){
           tile += "🟩";
-        }else{
+        }else if (allletters[r].letters[c].status === "yellow"){
           tile += "🟨";
+        }else{
+          tile += "⬜";
         };
       };
-      if(r < 5) tile += "\n";
+      if(r < rmax - 1) tile += "\n";
     };
     return tile
   };
-  // console.log(sharedTiles());
+  console.log(sharedTiles());
   return (
     <>
       <Header>
@@ -173,7 +179,10 @@ const App = () => {
             {/* <Share /> */}
           </Content>
           {/* <button onClick={() => {console.log(message)}}>MESSAGE</button> */}
-          <ShareButton tiles={sharedTiles()}/>
+          <ShareButton 
+            tiles={sharedTiles()}
+            isClear={isClear}
+          />
         </ContentWrapper>
       </Body>
     </>

@@ -1,7 +1,13 @@
 import styled from 'styled-components';
+import React, { useState, useEffect } from 'react';
 import { RWebShare } from "react-web-share";
 
 const ShareButton = props => {
+  // const [isAppear, setIsAppear] = useState(false);
+  // useEffect(() => {
+  //   setIsAppear(true);
+  // }, [props.isClear]);
+  // console.log(isAppear);
   return(
     <RWebShare
       data={{
@@ -9,7 +15,9 @@ const ShareButton = props => {
         title: "W**D**",
       }}
     >
-      <Button28>Share</Button28>
+      <Button28 className={props.isClear ? "appear" : ""}>
+        Share
+      </Button28>
     </RWebShare>
   );
 };
@@ -22,7 +30,7 @@ const Button28 = styled.button`
   box-sizing: border-box;
   color: #3B3B3B;
   cursor: pointer;
-  display: inline-block;
+  display: none;
   font-family: inherit;
   font-size: 16px;
   font-weight: 600;
@@ -40,6 +48,9 @@ const Button28 = styled.button`
   touch-action: manipulation;
   width: 140px;
   will-change: transform;
+  &.appear {
+    display: inline-block;
+  }
   &:hover {
     color: #fff;
     background-color: #1A1A1A;
