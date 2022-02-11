@@ -13,7 +13,7 @@ const App = () => {
   useEffect(() => {
     setANSWERLETTER(wordPopularList[Math.floor(Math.random() * (wordPopularList.length - 1))].toUpperCase());
   }, []);
-  // console.log(ANSWERLETTER);
+  console.log(ANSWERLETTER);
   const toCountDict = arr => {
     const d = {};
     for(let key of arr){
@@ -40,6 +40,7 @@ const App = () => {
   const [message, setMessage] = useState("");
   const [pushCount, setPushCount] = useState(0);
   const [isClear, setIsClear] = useState(false);
+  const [isFailed, setIsFailed] = useState(false);
   const initialAllKeyboardState = {
     "Q": "", "W": "", "E": "", "R": "", "T": "", "Y": "", "U": "", "I": "", "O": "", "P": "",
     "A": "", "S": "", "D": "", "F": "", "G": "", "H": "", "J": "", "K": "", "L": "",
@@ -126,6 +127,7 @@ const App = () => {
           setRowCursor(rowCursor + 1);
         }else{
           setIsClear(true);
+          setIsFailed(true);
         };
       }else{
         setMessage("notinwordlist");
@@ -173,6 +175,7 @@ const App = () => {
             />
             {/* <Share /> */}
           </Content>
+          {isFailed ? <TheAnswerIs>{`The answer is ` + ANSWERLETTER}</TheAnswerIs> : null}
           <ShareButton 
             tiles={sharedTiles()}
             isClear={isClear}
@@ -203,6 +206,10 @@ const Content = styled.div`
   width : 100%;
   max-width : 500px;
   margin: 0 auto;
+`;
+
+const TheAnswerIs = styled.div`
+  padding-bottom: 1rem;
 `;
 
 export default App;
