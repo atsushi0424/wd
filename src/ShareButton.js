@@ -1,13 +1,7 @@
 import styled from 'styled-components';
-import React, { useState, useEffect } from 'react';
 import { RWebShare } from "react-web-share";
 
 const ShareButton = props => {
-  // const [isAppear, setIsAppear] = useState(false);
-  // useEffect(() => {
-  //   setIsAppear(true);
-  // }, [props.isClear]);
-  // console.log(isAppear);
   return(
     <RWebShare
       data={{
