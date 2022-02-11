@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
+
 .App {
   text-align: center;
 }
@@ -5,6 +7,210 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.Board {
+  margin-top: 100px;
+  width: 310px;
+  height: 310px;
+  margin: 0 auto;
+}
+
+@keyframes Rotate {
+  50% {
+    transform: rotateX(90deg);
+  }
+  100% {
+    transform: rotateX(0);
+  }
+}
+
+.Header {
+  text-align: center;
+  border-bottom: 2px solid #dcdcdc;
+  font-size: 3rem;
+  margin-bottom: 10px;
+  font-family: Nunito, sans-serif;
+}
+
+.LetterTile {
+  width: 47px;
+  height: 47px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  line-height: 2rem;
+  font-weight: bold;
+  vertical-align: middle;
+  box-sizing: border-box;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.LettersRow{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+}
+
+.LetterTile.white{
+  border: 2px solid #808080;
+  color: #000000;
+  background-color: #ffffff;
+}
+.LetterTile.green {
+  color: #ffffff;
+  background-color: #538d4e;
+  animation-name: Rotate;
+  animation-timing-function: ease-in-out;
+  animation-duration: .5s;
+}
+.LetterTile.gray {
+  color: #ffffff;
+  background-color: #808080;
+  animation-name: Rotate;
+  animation-timing-function: ease-in-out;
+  animation-duration: .5s;
+}
+.LetterTile.yellow {
+  color: #ffffff;
+  background-color: #b59f3b;
+}
+
+.KeyBoard{
+  height: 200px;
+  bottom: 0;
+  margin: 10px 8px;
+  user-select: none;
+}
+
+.KeyboardRow{
+  display: flex;
+  width: 100%;
+  margin: 0 auto 8px;
+  touch-action: manipulation;
+}
+
+.LetterKey{
+  font-size: .8rem;
+  font-family: inherit;
+  font-weight: bold;
+  border: 0;
+  padding: 0;
+  margin: 0 6px 0 0;
+  height: 58px;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+  background-color: #dcdcdc;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  -webkit-tap-highlight-color: rgba(0,0,0,0.3);
+  transition: .2s;
+}
+
+.LetterKey.green {
+  color: #ffffff;
+  background-color: #538d4e;
+}
+.LetterKey.gray {
+  color: #ffffff;
+  background-color: #808080;
+}
+.LetterKey.yellow {
+  color: #ffffff;
+  background-color: #b59f3b;
+}
+.LetterKey.Enterkey {
+  font-size: .75rem;
+  flex: 1.5;
+}
+.LetterKey.Deletekey{
+  font-size: .75rem;
+  flex: 1.5;
+}
+
+.Button28{
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #3B3B3B;
+  cursor: pointer;
+  display: none;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+  min-height: 40px;
+  min-width: 0;
+  outline: none;
+  padding: 16px 24px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: 140px;
+  will-change: transform;
+}
+.Button28.appear {
+  display: inline-block;
+}
+.Button28:hover {
+  color: #fff;
+  background-color: #1A1A1A;
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+.Button28:active {
+  box-shadow: none;
+  transform: translateY(0);
+}
+.Button28:disabled {
+  pointer-events: none;
+}
+
+
+@media screen and (max-width:374px) {
+  .Header {
+    font-size: 2.7rem;
+  }
+  .Board {
+    width: 270px;
+    height: 270px;
+  }
+  .LetterTile {
+    width: 40px;
+    height: 40px;
+    font-size: 1.7rem;
+  }
+  .KeyBoard{
+    height: 150px;
+  }
+  .KeyboardRow{
+    margin: 0 auto 6px;
+  }
+  .LetterKey{
+    font-size: .6rem;
+    height: 44px;
+  }
+  .LetterKey.Enterkey {
+    font-size: .6rem;
+  }
+  .LetterKey.Deletekey{
+    font-size: .6rem;
+  }
+  .Button28{
+    padding: 0;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -37,4 +243,3 @@
   }
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');

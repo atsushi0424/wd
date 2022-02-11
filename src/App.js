@@ -157,9 +157,9 @@ const App = () => {
   };
   return (
     <>
-      <Header>
+      <header className={`Header`}>
         <span>W**D**</span>
-      </Header>
+      </header>
       <Body>
         <ContentWrapper>
           <Content>
@@ -187,17 +187,17 @@ const App = () => {
   );
 }
 
-const Body = styled.header`
+const Body = styled.div`
   font-family: Nunito, sans-serif;
 `;
 
-const Header = styled.header`
-  text-align: center;
-  border-bottom: 2px solid #dcdcdc;
-  font-size: 3rem;
-  margin-bottom: 10px;
-  font-family: Nunito, sans-serif;
-`;
+// const Header = styled.header`
+//   text-align: center;
+//   border-bottom: 2px solid #dcdcdc;
+//   font-size: 3rem;
+//   margin-bottom: 10px;
+//   font-family: Nunito, sans-serif;
+// `;
 
 const ContentWrapper = styled.div`
   text-align: center;
