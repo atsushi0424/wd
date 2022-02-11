@@ -6,12 +6,13 @@ import React, { useState, useEffect } from 'react';
 import Message from './message';
 import ShareButton from './ShareButton';
 import wordList from './words';
-import wordPopularList from './words_popular';
+// import wordPopularList from './words_popular';
+import wordOxfordList from './words_oxford';
 
 const App = () => {
   const [ANSWERLETTER, setANSWERLETTER] = useState("ANSWER");
   useEffect(() => {
-    setANSWERLETTER(wordPopularList[Math.floor(Math.random() * (wordPopularList.length - 1))].toUpperCase());
+    setANSWERLETTER(wordOxfordList[Math.floor(Math.random() * (wordOxfordList.length - 1))].toUpperCase());
   }, []);
   console.log(ANSWERLETTER);
   const toCountDict = arr => {
