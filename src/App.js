@@ -13,7 +13,7 @@ const App = () => {
   useEffect(() => {
     setANSWERLETTER(wordPopularList[Math.floor(Math.random() * (wordPopularList.length - 1))].toUpperCase());
   }, []);
-  console.log(ANSWERLETTER);
+  // console.log(ANSWERLETTER);
   const toCountDict = arr => {
     const d = {};
     for(let key of arr){
@@ -173,7 +173,6 @@ const App = () => {
             />
             {/* <Share /> */}
           </Content>
-          <button onClick={() => {console.log(sharedTiles());}}>adfajfdaj</button>
           <ShareButton 
             tiles={sharedTiles()}
             isClear={isClear}
