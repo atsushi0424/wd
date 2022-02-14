@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# W**D**
 
 This React app is like [Wordle](https://www.nytimes.com/games/wordle/index.html), which is a free and simple online word game.\
 Unlike Wordle itself, this is a game of guessing 6-letter English words.
