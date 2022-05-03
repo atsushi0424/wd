@@ -1,6 +1,6 @@
 # W\*\*D\*\*
 
-This React app is like [Wordle](https://www.nytimes.com/games/wordle/index.html), which is a free and simple online word game.\
+This React app is like [Wordle](https://www.nytimes.com/games/wordle/index.html), the free, simple and famous online word game.\
 Unlike Wordle itself, this is a game of guessing 6-letter English words.
 
 ## Demo
